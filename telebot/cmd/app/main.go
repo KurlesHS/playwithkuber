@@ -8,7 +8,7 @@ import (
 	"kurles/kuber/lib/server/liveness"
 	"kurles/kuber/telebot/internal/client/sayhello"
 	"kurles/kuber/telebot/internal/client/tg"
-	"kurles/kuber/telebot/internal/client/usecase/telebot"
+	"kurles/kuber/telebot/internal/usecase/telebot"
 	"log"
 	"net"
 	"net/http"
