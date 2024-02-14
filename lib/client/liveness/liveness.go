@@ -30,6 +30,6 @@ func (c *LivenessClient) Crash(ctx context.Context, after time.Duration) error {
 
 func (c *LivenessClient) Dead(ctx context.Context, after time.Duration) error {
 	sec := after.Seconds()
-	_, err := httphelpers.GetRequest(ctx, fmt.Sprintf("%s/dead/%d", c.addr, int(sec)))
+	_, err := httphelpers.GetRequest(ctx, fmt.Sprintf("%s/simulate/%d", c.addr, int(sec)))
 	return err
 }
