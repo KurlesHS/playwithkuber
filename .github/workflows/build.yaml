@@ -21,6 +21,7 @@ jobs:
       - name: Build telebot binary
         run: |          
           cd telebot 
+          sed -i 's\__build_number__\${{github.run_number}}\g' telebot/cmd/app/main.go 
           mkdir bin
           CGO_ENABLED=0 go build -a -installsuffix cgo -o ./bin/telebot ./cmd/app/... 
       - name: Build hellosayer binary
