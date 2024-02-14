@@ -1,0 +1,23 @@
+# тегируем наше гошное приложение
+docker tag go:v0.2 kurles/lesson1:v0.2
+# логинимся на докерхабе
+docker login
+# пушим образ на докерхаб
+docker push kurles/lesson1:v0.2
+
+# применение деплоймента
+kubectl apply -f deployment.yaml
+# конектимся к поду
+kubectl exec -it declarative-deployment-69477c779d-mnbkj -- sh
+
+# проборс порта из пода
+kubectl port-forward  -n lesson14 static-web 8080:8080 # ключ -n означает неймспейс
+
+# быстрый неймспейс переключатель
+https://github.com/blendle/kns
+
+
+docker tag hellosayer:v1.0 kurles/hellosayer:v1.0
+docker tag telebot:v1.0 kurles/telebot:v1.0
+docker push kurles/telebot:v1.0 
+docker push kurles/hellosayer:v1.0 

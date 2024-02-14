@@ -1,0 +1,12 @@
+.idea
+.vscode
+http-requests
+vendor-proto
+bin
+swagger-web-ui
+__debug_*
+postgresql/data
+cartdata
+/kuber-cfgs/config.yaml
+#loms/internal/swagger/loms_service.swagger.json
+#cart/internal/swagger/cart_service.swagger.json
