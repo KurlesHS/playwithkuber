@@ -16,7 +16,7 @@ type Telebot interface {
 
 type Liveness interface {
 	Crash(ctx context.Context, after time.Duration) error
-	Dead(ctx context.Context, after time.Duration) error
+	Dead(ctx context.Context, after time.Duration) (string, error)
 }
 
 type SayHello interface {
@@ -69,8 +69,9 @@ func (t *TelebotUseCase) ProcessMessage(ctx context.Context, msg model.Message) 
 			return
 		}
 
-		if err := t.l.Dead(ctx, time.Duration(sec)*time.Second); err != nil {
-			t.t.SendMessage(ctx, "say hello service will simulate dead after "+(time.Duration(sec)*time.Second).String())
+		body, err := t.l.Dead(ctx, time.Duration(sec)*time.Second)
+		if err != nil {
+			t.t.SendMessage(ctx, body)
 		} else {
 			t.t.SendMessage(ctx, "something bad happens while sending simulate dead request")
 		}

@@ -28,8 +28,8 @@ func (c *LivenessClient) Crash(ctx context.Context, after time.Duration) error {
 	return err
 }
 
-func (c *LivenessClient) Dead(ctx context.Context, after time.Duration) error {
+func (c *LivenessClient) Dead(ctx context.Context, after time.Duration) (string, error) {
 	sec := after.Seconds()
-	_, err := httphelpers.GetRequest(ctx, fmt.Sprintf("%s/simulate/%d", c.addr, int(sec)))
-	return err
+	body, err := httphelpers.GetRequest(ctx, fmt.Sprintf("%s/simulate/%d", c.addr, int(sec)))
+	return string(body), err
 }

@@ -48,7 +48,7 @@ func getStrEnv(key, def string) string {
 // chat with bot
 // https://gist.github.com/2minchul/6d344a0f1f85ead1530803df2e4f9894
 func main() {
-	log.Println("start application with new servemux and liveness")
+	log.Println("start application with new servemux and liveness 2")
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 	port := os.Getenv(PORT_ENV_VAR)

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 )
@@ -17,8 +18,9 @@ func (l *Liveness) SimulateDead(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	hostname, _ := os.Hostname()
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(fmt.Sprintf("dead simulate after %d seconds", d)))
+	w.Write([]byte(fmt.Sprintf("dead simulate after %d seconds (pod %s)", d, hostname)))
 
 	go func() {
 		select {
