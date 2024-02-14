@@ -68,8 +68,12 @@ func (t *TelebotUseCase) ProcessMessage(ctx context.Context, msg model.Message) 
 			t.t.SendMessage(ctx, "invalid number")
 			return
 		}
-		t.t.SendMessage(ctx, "say hello service will simulate dead after "+(time.Duration(sec)*time.Second).String())
-		t.l.Dead(ctx, time.Duration(sec)*time.Second)
+
+		if err := t.l.Dead(ctx, time.Duration(sec)*time.Second); err != nil {
+			t.t.SendMessage(ctx, "say hello service will simulate dead after "+(time.Duration(sec)*time.Second).String())
+		} else {
+			t.t.SendMessage(ctx, "something bad happens while sending simulate dead request")
+		}
 	default:
 		t.t.SendMessage(ctx, fmt.Sprintf("unknown command '%s'", cmd))
 	}
