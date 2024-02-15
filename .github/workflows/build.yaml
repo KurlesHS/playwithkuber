@@ -20,10 +20,9 @@ jobs:
           go get github.com/tucnak/telebot          
       - name: Build telebot binary
         run: |          
-          cd telebot 
-          sed -i 's\__build_number__\${{github.run_number}}\g' cmd/app/main.go 
+          cd telebot           
           mkdir bin
-          CGO_ENABLED=0 go build -a -installsuffix cgo -o ./bin/telebot ./cmd/app/... 
+          CGO_ENABLED=0 go build ldflags="X=kurles/kuber/telebot/internal/config.buildNumber=${{github.run_number}}" -a -installsuffix cgo -o ./bin/telebot ./cmd/app/... 
       - name: Build hellosayer binary
         run: |          
           cd hellosayer 

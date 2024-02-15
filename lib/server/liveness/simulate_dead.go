@@ -27,7 +27,7 @@ func (l *Liveness) SimulateDead(w http.ResponseWriter, r *http.Request) {
 		case <-time.After(time.Duration(d) * time.Second):
 			l.mu.Lock()
 			l.isLive = false
-			defer l.mu.Unlock()
+			l.mu.Unlock()
 		case <-l.finishCh:
 			log.Print("graceful shutdown from crash handler")
 			return
