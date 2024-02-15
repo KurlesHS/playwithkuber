@@ -22,7 +22,7 @@ jobs:
         run: |          
           cd telebot           
           mkdir bin
-          CGO_ENABLED=0 go build -ldflags="X=kurles/kuber/telebot/internal/config.buildNumber=${{github.run_number}}" -a -installsuffix cgo -o ./bin/telebot ./cmd/app/... 
+          CGO_ENABLED=0 go build -ldflags=-X=kurles/kuber/telebot/internal/config.buildNumber=${{github.run_number}} -a -installsuffix cgo -o ./bin/telebot ./cmd/app/... 
       - name: Build hellosayer binary
         run: |          
           cd hellosayer 
